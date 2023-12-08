@@ -1,0 +1,36 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .strike-through {
+                position: absolute;
+                height: 2px;
+                width: 100%;
+                background-color: black;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        </style>
+        <title>Chihiro Language Pal</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.8" integrity="sha384-rgjA7mptc2ETQqXoYC3/zJvkU7K/aP44Y+z7xQuJiVnB/422P/Ak+F/AqFR7E4Wr" crossorigin="anonymous"></script>
+        <script src="{% static 'js/record_audio.js' %}" defer></script>
+        <link href="{% static 'css/animations.css' %}" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    </head>
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        {% include 'core/navbar.html' %}
+
+        <div class="container mt-4 pt-16">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

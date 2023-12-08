@@ -1,0 +1,73 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    command: ./wait-for-it.sh mysql:3306 -- ./docker-entrypoint.sh
+    ports:
+      - 8000:8000
+    depends_on:
+      - redis
+      - postgres 
+    restart: on-failure
+    env_file:
+      - variables.env
+
+    volumes:
+      - .:/app
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"  # Map the default PostgreSQL port to the host
+    restart: always
+    environment:
+      - POSTGRES_DB=$(DB_NAME)
+      - POSTGRES_USER=$(DB_USER)
+      - POSTGRES_PASSWORD=$(DB_PASSWD)
+    volumes:
+      - mypostgresdata:/var/lib/postgresql/data  # Persist database data
+  redis:
+    image: redis:7.0-alpine
+    ports:
+      - 6378:6379
+    restart: always
+    volumes:
+      - myredisdata:/data
+  celery:
+    build: .
+    command: celery -A config worker --loglevel=info
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+    env_file:
+      - variables.env
+  celery-beat:
+    build: .
+    command: celery -A config beat --loglevel=info
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+    env_file:
+      - variables.env
+  flower:
+    build: .
+    command: celery -A config flower
+    depends_on:
+      - web
+      - redis
+      - celery
+    env_file:
+      - variables.env
+    environment:
+      - DEBUG=1
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+    ports:
+      - 5555:5555
+volumes:
+  mypostgresdata:
+  myredisdata:    
+
