@@ -29,24 +29,46 @@ Language Learning Assistant is a Django-based web application designed to aid la
 
 ### Setup
 1. Clone the repository:
-   ```
-   git clone [repository URL]
-   cd [repository name]
-   ```
+```
+git clone [repository URL]
+cd [repository name]
+```
 2. Create a `variables.env` file in the project root with the necessary environment variables:
-   ```
-   # Example content of variables.env
-   POSTGRES_USER=youruser
-   POSTGRES_PASSWORD=yourpassword
-   REDIS_URL=redis://redis:6379/0
-   GOOGLE_CLIENT_ID=yourgoogleclientid
-   GOOGLE_CLIENT_SECRET=yourgoogleclientsecret
-   ```
+```
+# Example content of variables.env
+DB_NAME=db_name
+DB_USER=myuser
+DB_PASSWD=yourpassword1
+DJ_DEBUG=True
+DJ_SECRET_KEY="django-insecure-hs7j037urx7iav+7#10%-vu4l4f5@@-1_zo)oft3g8vf2jmp"
+EMAIL_HOST=posteo.de
+EMAIL_HOST_USER=username@posteo.net
+EMAIL_HOST_PASSWORD=yourpassword2
+EMAIL_USE_SSL=True
+EMAIL_PORT=465
+DEFAULT_FROM_EMAIL=username@posteo.net
+REDIS_HOST=redis
+REDIS_USERNAME=guest
+REDIS_PASSWORD=yourpassword3
+REDIS_PORT=6379
+REDIS_DB=5
+REDIS_DB_OPT=6
+REDIS_DB_CELERY=3
+REDIS_DB_CACHE=4
+DJANGO_SUPERUSER_FIRST_NAME=Yourfirstname
+DJANGO_SUPERUSER_LAST_NAME=Yourlastname
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=username@posteo.net
+DJANGO_SUPERUSER_PASSWORD=yourpasword4
+HOST_IP=192.168.1.1
+CELERY_BROKER=redis://redis:6379/3
+CELERY_BACKEND=redis://redis:6379/4
+```
 
 3. Run the application using Docker Compose:
-   ```
-   docker-compose up -d
-   ```
+```
+docker-compose up -d
+```
 
 ## Usage
 - Access the application at `http://localhost:[port]` (replace `[port]` with the port you've configured, default is usually 8000).
@@ -61,3 +83,4 @@ Contributions to the Language Learning Assistant are welcome! Here's how to cont
 
 ## License
 Apache License Version 2.0
+

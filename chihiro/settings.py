@@ -12,9 +12,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DB_NAME = os.environ.get('DB_NAME', 'chihiro')
+print (DB_NAME)
 DB_HOST = os.environ.get('DB_HOST', 'localhost')
 DB_USER = os.environ.get('DB_USER', 'myuser')
 DB_PASSWD = os.environ.get('DB_PWD', '')
