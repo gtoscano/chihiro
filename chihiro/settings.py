@@ -42,7 +42,7 @@ SECRET_KEY = 'django-insecure-2ooy(!-px2q711qm#ivj7g8v+7*7e+j(xp9%ub$&@bk)x$9v6s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['chihiro.toscano.mx', '192.168.1.3']
+ALLOWED_HOSTS = ['chihiro.toscano.mx', '192.168.1.3', 'localhost', ]
 
 CSRF_TRUSTED_ORIGINS = ['https://chihiro.toscano.mx', 'http://chihiro.toscano.mx', 'http://localhost:8000', 'http://192.168.1.3:8000']
 
